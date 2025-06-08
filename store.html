@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Store Catalog - Your Small Business</title>
+<style>
+  /* Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap');
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #374151; /* dark gray-700 */
+    --color-text-muted: #6b7280; /* gray-500 */
+    --color-primary: #111827; /* gray-900 */
+    --color-primary-light: #4b5563; /* gray-600 */
+    --color-card-bg: #f9fafb; /* gray-50 */
+    --color-shadow: rgba(0, 0, 0, 0.05);
+    --radius: 0.75rem;
+    --spacing-lg: 4rem;
+    --spacing-md: 2rem;
+    --spacing-sm: 1rem;
+    --font-headline: 'Inter', sans-serif;
+  }
+
+  /* Reset & Base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: var(--font-headline);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover,
+  a:focus {
+    color: #2563eb; /* blue-600 */
+    outline: none;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0; left: 0; right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid #e5e7eb; /* gray-200 */
+    z-index: 999;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+  nav a.cta {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px var(--color-shadow);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  nav a.cta:hover,
+  nav a.cta:focus {
+    background-color: #2563eb; /* blue-600 */
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  /* Hero Section */
+  .hero {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    padding: 0 var(--spacing-md);
+  }
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Products Grid */
+  .products-section {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 2rem;
+  }
+
+  /* Product Card */
+  .product-card {
+    background-color: var(--color-card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 3px 8px var(--color-shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .product-card:hover,
+  .product-card:focus-within {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+    outline: none;
+  }
+  .product-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+  .product-price {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #10b981; /* green-500 */
+    margin-bottom: 0.5rem;
+  }
+  .product-quantity {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+  .owner-contact {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .owner-contact svg {
+    width: 18px;
+    height: 18px;
+    fill: #25d366; /* WhatsApp green */
+  }
+  .order-btn {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px var(--color-shadow);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+  }
+  .order-btn:hover,
+  .order-btn:focus {
+    background-color: #2563eb; /* blue-600 */
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  /* About Section */
+  .about-section {
+    background-color: var(--color-card-bg);
+    border-radius: var(--radius);
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 3px 8px var(--color-shadow);
+  }
+  .about-section h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .about-section p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav class="container" aria-label="Primary navigation">
+    <div class="logo" tabindex="0">MyStore</div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-label="Store introduction">
+    <h1>Explore Our Catalogue</h1>
+    <p>Browse our products with prices, availability, and easily place your order via WhatsApp.</p>
+  </section>
+
+  <section class="products-section container" aria-label="Product catalog">
+    <div class="products-grid" id="productsGrid">
+      <!-- Products will be dynamically injected here -->
+    </div>
+  </section>
+
+  <section class="about-section" aria-label="About the store">
+    <h2>About Our Store</h2>
+    <p>Founded with a passion for quality and service, MyStore offers a curated selection of products to meet your needs. We pride ourselves on reliable availability and quick order fulfillment through WhatsApp direct chat. Thank you for supporting our small business!</p>
+  </section>
+</main>
+
+<script>
+  // Sample product data
+  const products = [
+    {
+      id: 1,
+      name: 'Handcrafted Wooden Chair',
+      price: 120,
+      currency: 'USD',
+      quantity: 14,
+      ownerWhatsApp: '+12345678901'
+    },
+    {
+      id: 2,
+      name: 'Ceramic Vase Set',
+      price: 85,
+      currency: 'USD',
+      quantity: 30,
+      ownerWhatsApp: '+12345678901'
+    },
+    {
+      id: 3,
+      name: 'Organic Cotton T-Shirt',
+      price: 25,
+      currency: 'USD',
+      quantity: 50,
+      ownerWhatsApp: '+12345678901'
+    },
+    {
+      id: 4,
+      name: 'Bluetooth Speaker',
+      price: 75,
+      currency: 'USD',
+      quantity: 20,
+      ownerWhatsApp: '+12345678901'
+    }
+  ];
+
+  const productsGrid = document.getElementById('productsGrid');
+
+  function createWhatsAppLink(phone, productName) {
+    const phoneSanitized = phone.replace(/\D/g,''); // only digits
+    const text = encodeURIComponent(`Hello, I would like to order the product: "${productName}"`);
+    return `https://wa.me/${phoneSanitized}?text=${text}`;
+  }
+
+  function createProductCard(product) {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.setAttribute('tabindex', '0');
+
+    card.innerHTML = `
+      <h3 class="product-name">${product.name}</h3>
+      <div class="product-price">${product.currency} $${product.price.toFixed(2)}</div>
+      <div class="product-quantity">In stock: ${product.quantity}</div>
+      <div class="owner-contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img">
+          <path d="M20.52 3.48A11.462 11.462 0 0012 0C5.373 0 0 5.373 0 12c0 2.122.557 4.107 1.583 5.87L0 24l6.466-1.567A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12 0-3.184-1.236-6.183-3.48-8.52zM12 22c-1.83 0-3.555-.558-4.978-1.514l-.357-.213-3.84.93.93-3.84-.214-.357A9.972 9.972 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.139-7.203c-.275-.138-1.624-.8-1.876-.893-.252-.092-.436-.138-.62.138-.183.275-.71.893-.87 1.076-.16.183-.317.206-.59.069-.275-.138-1.16-.43-2.213-1.366-.818-.728-1.37-1.626-1.53-1.9-.16-.275-.017-.425.12-.563.123-.123.275-.317.412-.475.138-.16.183-.275.275-.457.092-.183.046-.344-.023-.482-.069-.138-.62-1.49-.85-2.039-.224-.537-.452-.464-.62-.473l-.53-.009c-.183 0-.48.069-.73.344-.252.275-.962.94-.962 2.292 0 1.352.985 2.656 1.12 2.84.138.183 1.933 2.95 4.687 4.138.656.283 1.167.453 1.567.58.658.213 1.258.184 1.733.112.528-.079 1.624-.663 1.855-1.3.23-.637.23-1.18.16-1.3-.069-.122-.252-.183-.53-.32z"/>
+        </svg>
+        <a href="${createWhatsAppLink(product.ownerWhatsApp, product.name)}" target="_blank" rel="noopener noreferrer" aria-label="Contact owner on WhatsApp">${product.ownerWhatsApp}</a>
+      </div>
+      <button class="order-btn" type="button" aria-label="Order ${product.name}">Order</button>
+    `;
+
+    const orderBtn = card.querySelector('.order-btn');
+    orderBtn.addEventListener('click', () => {
+      window.open(createWhatsAppLink(product.ownerWhatsApp, product.name), '_blank', 'noopener');
+    });
+
+    return card;
+  }
+
+  products.forEach(product => {
+    productsGrid.appendChild(createProductCard(product));
+  });
+</script>
+
+</body>
+</html>
+
